@@ -1479,7 +1479,36 @@ document.querySelectorAll('.nav-links a').forEach(a => {
 
 // Form submit
 function submitForm() {
-  alert('✅ Terima kasih! Formulir pendaftaran Anda telah dikirim. Tim kami akan menghubungi Anda segera melalui WhatsApp.');
+  const nama = document.querySelector('input[placeholder="Nama lengkap anak"]').value;
+  const usia = document.querySelector('select').value;
+  const ortu = document.querySelector('input[placeholder="Nama ayah/ibu"]').value;
+  const wa = document.querySelector('input[placeholder="08xx-xxxx-xxxx"]').value;
+  const pesan = document.querySelector('textarea').value;
+
+  if (!nama || !ortu || !wa) {
+    alert("❗ Mohon lengkapi data wajib");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbw9aZJHwxirFlvNrudckJht5TP7orH7gH_i77jbJNq7ia0myBkG8P2xIH85DKFhEBus/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      nama: nama,
+      usia: usia,
+      ortu: ortu,
+      wa: wa,
+      pesan: pesan
+    }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(() => {
+    alert("✅ Data berhasil dikirim!");
+  })
+  .catch(() => {
+    alert("❌ Gagal kirim data");
+  });
 }
 </script>
 </body>
