@@ -1492,17 +1492,17 @@ function submitForm() {
 
   fetch("https://script.google.com/macros/s/AKfycbw9aZJHwxirFlvNrudckJht5TP7orH7gH_i77jbJNq7ia0myBkG8P2xIH85DKFhEBus/exec", {
     method: "POST",
-    mode: "no-cors", // 🔥 ini kunci
+    mode: "no-cors",
     body: JSON.stringify({
-      nama: nama,
-      usia: usia,
-      ortu: ortu,
-      wa: wa,
-      pesan: pesan
+      nama,
+      usia,
+      ortu,
+      wa,
+      pesan
     })
   });
 
-  alert("✅ Data dikirim (cek Google Sheets)");
+  alert("✅ Data dikirim! Cek Google Sheets");
 }
 </script>
 </body>
