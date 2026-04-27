@@ -1499,7 +1499,10 @@ function submitForm() {
   // format nomor WA (hapus 0 depan)
   let nomor = "62895636757706";
 
-  const text = `Halo Admin TK 👋
+// pastikan cuma angka
+nomor = nomor.replace(/[^0-9]/g, "");
+
+const text = `Halo Admin TK 👋
 Saya ingin mendaftarkan anak:
 
 Nama Anak: ${nama}
@@ -1510,12 +1513,9 @@ No WA: ${wa}
 Pesan:
 ${pesan}`;
 
-  const waURL = `https://wa.me/${nomor}?text=${encodeURIComponent(text)}`;
+const waURL = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(text);
 
-  // buka WA (lebih stabil dari window.open)
-  window.location.href = waURL;
-}
-
+window.location.href = waURL;
  
 </script>
 </body>
