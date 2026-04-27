@@ -1477,7 +1477,6 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   });
 });
 
-// Form submit
 function submitForm() {
   const nama = document.querySelector('input[placeholder="Nama lengkap anak"]').value;
   const usia = document.querySelector('select').value;
@@ -1490,19 +1489,31 @@ function submitForm() {
     return;
   }
 
+  // kirim ke Google Sheets
   fetch("https://script.google.com/macros/s/AKfycbw9aZJHwxirFlvNrudckJht5TP7orH7gH_i77jbJNq7ia0myBkG8P2xIH85DKFhEBus/exec", {
     method: "POST",
     mode: "no-cors",
-    body: JSON.stringify({
-      nama,
-      usia,
-      ortu,
-      wa,
-      pesan
-    })
+    body: JSON.stringify({ nama, usia, ortu, wa, pesan })
   });
 
-  alert("✅ Data dikirim! Cek Google Sheets");
+  // format nomor WA (hapus 0 depan)
+  let nomor = wa.replace(/^0/, "62").replace(/[^0-9]/g, "");
+
+  const text = `Halo Admin TK 👋
+Saya ingin mendaftarkan anak:
+
+Nama Anak: ${nama}
+Usia: ${usia}
+Orang Tua: ${ortu}
+No WA: ${wa}
+
+Pesan:
+${pesan}`;
+
+  const waURL = `https://wa.me/${nomor}?text=${encodeURIComponent(text)}`;
+
+  // buka WA (lebih stabil dari window.open)
+  window.location.href = waURL;
 }
 
  
