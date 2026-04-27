@@ -1496,13 +1496,11 @@ function submitForm() {
     body: JSON.stringify({ nama, usia, ortu, wa, pesan })
   });
 
-  // format nomor WA (hapus 0 depan)
+  // nomor admin
   let nomor = "62895636757706";
+  nomor = nomor.replace(/[^0-9]/g, "");
 
-// pastikan cuma angka
-nomor = nomor.replace(/[^0-9]/g, "");
-
-const text = `Halo Admin TK 👋
+  const text = `Halo Admin TK 👋
 Saya ingin mendaftarkan anak:
 
 Nama Anak: ${nama}
@@ -1513,11 +1511,11 @@ No WA: ${wa}
 Pesan:
 ${pesan}`;
 
-const waURL = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(text);
-}
+  const waURL = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(text);
 
-window.location.href = waURL;
- 
+  // PINDAH KE SINI (INI PENTING)
+  window.location.href = waURL;
+}
 </script>
 </body>
 </html>
