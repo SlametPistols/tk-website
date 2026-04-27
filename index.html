@@ -1505,27 +1505,7 @@ function submitForm() {
   alert("✅ Data dikirim! Cek Google Sheets");
 }
 
-  // 2️⃣ AUTO WHATSAPP
-  const text = `Halo Admin TK 👋
-Saya ingin mendaftarkan anak:
-
-Nama Anak: ${nama}
-Usia: ${usia}
-Orang Tua: ${ortu}
-No WA: ${wa}
-
-Pesan:
-${pesan}`;
-
-  const waURL = `https://wa.me/62895636757706?text=${encodeURIComponent(text)}`;
-
-  window.open(waURL, "_blank");
-
-  alert("✅ Data tersimpan & WhatsApp dibuka!");
-
-  // reset form
-  document.querySelectorAll("input, textarea").forEach(el => el.value = "");
-}
+ 
 </script>
 </body>
 </html>
